@@ -32,15 +32,21 @@ interface DragZoneProps {
 }
 
 const COLOR_BG: Record<DragZoneProps["color"], string> = {
-  blue: "rgba(59,130,246,0.55)",   // tailwind blue-500 @ 55%
-  green: "rgba(34,197,94,0.55)",   // green-500 @ 55%
-  amber: "rgba(245,158,11,0.0)",   // amber-500 — invisible until hover
+  blue: "rgba(59,130,246,0.85)",   // tailwind blue-500 @ 85%
+  green: "rgba(34,197,94,0.85)",   // green-500 @ 85%
+  amber: "rgba(245,158,11,0.15)",  // amber-500 — faint until hover
 };
 
 const COLOR_BG_HOVER: Record<DragZoneProps["color"], string> = {
-  blue: "rgba(59,130,246,0.85)",
-  green: "rgba(34,197,94,0.85)",
-  amber: "rgba(245,158,11,0.55)",
+  blue: "rgba(59,130,246,1.0)",
+  green: "rgba(34,197,94,1.0)",
+  amber: "rgba(245,158,11,0.7)",
+};
+
+const COLOR_BORDER: Record<DragZoneProps["color"], string> = {
+  blue: "1px solid rgba(255,255,255,0.4)",
+  green: "1px solid rgba(255,255,255,0.4)",
+  amber: "1px dashed rgba(255,255,255,0.2)",
 };
 
 export default function DragZone({
@@ -108,9 +114,14 @@ export default function DragZone({
         height,
         cursor,
         background: bg,
+        border: COLOR_BORDER[color],
         borderRadius: GAP / 2,
         zIndex: 30,
         touchAction: "none",
+        boxShadow:
+          color === "amber"
+            ? undefined
+            : "0 0 0 1px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.4)",
         transition: active ? undefined : "background 120ms ease",
       }}
     />
