@@ -13,7 +13,7 @@ export default function LandingGrid() {
 
   return (
     <LayoutGroup>
-      <GridCanvas layout={layout} />
+      <GridCanvas layout={layout} onLayoutChange={setLayout} />
       <GridLayoutPicker current={layout} onSelect={setLayout} />
     </LayoutGroup>
   );
